@@ -1,4 +1,4 @@
-package com.example.github.ui.main
+package com.example.github.ui.profile.view
 
 import androidx.fragment.app.Fragment
 

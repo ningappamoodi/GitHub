@@ -1,4 +1,4 @@
-package com.example.github.ui.main
+package com.example.github.ui.profile.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,14 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.github.R
+import com.example.github.ui.profile.viewmodel.ProfileSearchViewModel
 
-class HomeFragment : Fragment() {
+class ProfileSearchFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = ProfileSearchFragment()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: ProfileSearchViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -23,7 +24,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ProfileSearchViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
