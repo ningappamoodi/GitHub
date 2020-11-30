@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.github.R
-import kotlinx.android.synthetic.main.home_activity.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

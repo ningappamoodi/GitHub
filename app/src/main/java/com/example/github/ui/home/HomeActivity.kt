@@ -14,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.github.R
+import org.koin.androidx.viewmodel.compat.SharedViewModelCompat.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeActivity : AppCompatActivity() {
 

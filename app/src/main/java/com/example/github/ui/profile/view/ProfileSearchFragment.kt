@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.github.R
+import com.example.github.ui.home.HomeViewModel
 import com.example.github.ui.profile.viewmodel.ProfileSearchViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ProfileSearchFragment : Fragment() {
+
+    private val profileViewModel: HomeViewModel by sharedViewModel()
 
     companion object {
         fun newInstance() = ProfileSearchFragment()
