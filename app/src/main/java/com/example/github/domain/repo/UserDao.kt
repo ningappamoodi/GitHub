@@ -1,13 +1,11 @@
 package com.example.github.domain.repo
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.example.github.domain.entity.User
 import kotlinx.coroutines.flow.Flow
 
 
+@Dao
 interface UserDao {
 
     @Query("SELECT * FROM User")

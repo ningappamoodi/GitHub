@@ -12,7 +12,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeFragment : Fragment() {
 
-    private val profileViewModel: HomeViewModel by sharedViewModel()
+    private val userViewModel: HomeViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +21,8 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         view.button.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_home_to_nav_profile)
+            userViewModel.fetch(view.usernameText.text.toString())
+          //  findNavController().navigate(R.id.action_nav_home_to_nav_profile)
         }
         return view
     }
