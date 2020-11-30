@@ -5,4 +5,8 @@ import com.example.github.domain.datasource.UserDataSource
 
 class UserRepo(private val userDataSource: UserDataSource) {
     suspend fun fetchUser(username: String): User = userDataSource.fetchUser(username)
+
+    suspend fun fetchFollowers(username: String): List<User> = userDataSource.fetchFollowers(username)
+
+    suspend fun fetchFollowing(username: String): List<User> = userDataSource.fetchFollowing(username)
 }

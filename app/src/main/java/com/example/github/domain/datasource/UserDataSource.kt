@@ -12,4 +12,16 @@ class UserDataSource(private val githubService: GithubService) {
             githubService.fetchUser(username)
         }
     }
+
+    suspend fun fetchFollowers(username: String): List<User> {
+        return withContext(Dispatchers.IO) {
+            githubService.fetchFollowers(username)
+        }
+    }
+
+    suspend fun fetchFollowing(username: String): List<User> {
+        return withContext(Dispatchers.IO) {
+            githubService.fetchFollowing(username)
+        }
+    }
 }
