@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.github.data.model.User
+import com.example.github.domain.entity.User
 import com.example.github.domain.usecases.UserUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception

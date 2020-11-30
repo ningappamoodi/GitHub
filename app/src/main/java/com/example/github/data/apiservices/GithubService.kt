@@ -1,6 +1,6 @@
 package com.example.github.data.apiservices
 
-import com.example.github.data.model.User
+import com.example.github.domain.entity.User
 import retrofit2.http.GET
 import retrofit2.http.Path
 
