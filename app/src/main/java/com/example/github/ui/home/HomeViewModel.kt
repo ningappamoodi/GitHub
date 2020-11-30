@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.github.domain.entity.User
 import com.example.github.domain.usecases.UserUseCase
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -21,15 +23,20 @@ class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
         _errorLiveData.value = false
 
         viewModelScope.launch {
-            val userList = try {
-                userUseCase.fetchUser(username)
+           try {
+                userUseCase.fetchUser(username)?.collect { consumeUser(it) }
             } catch (e: Exception) {
                 e.printStackTrace()
-                null
+               _errorLiveData.postValue(true)
             }
 
-            if (userList == null) _errorLiveData.postValue(true)
-            else _userLiveData.postValue(userList)
+        }
+    }
+
+    private fun consumeUser(user: User) {
+        when (user) {
+            null -> _errorLiveData.postValue(true)
+            else -> _userLiveData.postValue(user)
         }
     }
 }
