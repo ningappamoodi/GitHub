@@ -8,77 +8,45 @@
             type="com.example.github.domain.entity.User" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/repoCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:text="@{String.valueOf(user2.public_repos)}"
-        tools:text="2332"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/repoView"
+            layout="@layout/custom_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:count="@{user2.public_repos}"
+            app:countLabel="@{`Repo`}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/repoLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
-        android:text="Repo"
-        android:textSize="22dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repoCount" />
+        <include
+            android:id="@+id/followersView"
+            layout="@layout/custom_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="102dp"
+            android:layout_marginEnd="104dp"
+            app:count="@{user2.followers}"
+            app:countLabel="@{`Followers`}"
+            app:layout_constraintEnd_toStartOf="@+id/followingView"
+            app:layout_constraintStart_toEndOf="@+id/repoView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/followersCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="16dp"
-        android:text="@{String.valueOf(user2.followers)}"
-        tools:text="1500"
-        android:textSize="24dp"
-        app:layout_constraintStart_toEndOf="@+id/repoCount"
-        app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/followingView"
+            layout="@layout/custom_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:count="@{user2.following}"
+            app:countLabel="@{`Following`}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/followersLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="8dp"
-        android:text="Followers"
-        android:textSize="22dp"
-        app:layout_constraintStart_toEndOf="@+id/repoLabel"
-        app:layout_constraintTop_toBottomOf="@+id/followersCount" />
-
-    <TextView
-        android:id="@+id/followingCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:text="@{String.valueOf(user2.following)}"
-        tools:text="710"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/followingLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Following"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/followingCount" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
