@@ -14,7 +14,7 @@ import java.lang.Exception
 class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
     private val _userLiveData: MutableLiveData<User> = MutableLiveData()
-    val userListLiveData: LiveData<User>  = _userLiveData
+    val userLiveData: LiveData<User>  = _userLiveData
 
     private val _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
     val errorLiveData: LiveData<Boolean>  = _errorLiveData
