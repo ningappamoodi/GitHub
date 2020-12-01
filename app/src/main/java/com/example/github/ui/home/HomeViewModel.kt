@@ -24,7 +24,7 @@ class HomeViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
         viewModelScope.launch {
            try {
-                userUseCase.fetchUser(username)?.collect { consumeUser(it) }
+                userUseCase.fetchUser(username).collect { consumeUser(it) }
             } catch (e: Exception) {
                 e.printStackTrace()
                _errorLiveData.postValue(true)

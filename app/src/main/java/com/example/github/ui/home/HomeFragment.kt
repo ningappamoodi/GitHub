@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         view.button.setOnClickListener {
             userViewModel.fetch(view.usernameText.text.toString())
-          //  findNavController().navigate(R.id.action_nav_home_to_nav_profile)
+            findNavController().navigate(R.id.action_nav_home_to_nav_profile)
         }
         return view
     }
