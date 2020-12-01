@@ -11,8 +11,9 @@ class FollowerDataSource(private val followersDao: FollowersDao, private val git
 
     suspend fun fetchFollowers(username: String): Flow<List<Followers>> {
          withContext(Dispatchers.IO) {
-            githubService.fetchFollowers(username).also {
-                followersDao.deleteAndCreateFollowers(username, it) }
+            githubService.fetchFollowers(username).map<Followers, Followers>
+            { followers: Followers -> followers.username = username;followers }
+                .also { followersDao.deleteAndCreateFollowers(username, it) }
         }
         return followersDao.getFollowers(username)
     }

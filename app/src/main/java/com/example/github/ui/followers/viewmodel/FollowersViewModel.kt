@@ -22,7 +22,8 @@ class FollowersViewModel(private val followersUseCase: FollowersUseCase): ViewMo
 
         viewModelScope.launch {
             try {
-                followersUseCase.fetchFollowers(username).collect { consumeUser(it) }
+              val followers =  followersUseCase.fetchFollowers(username)
+                followers.collect { consumeUser(it) }
             } catch (e: Throwable) {
                 e.printStackTrace()
                 _errorLiveData.postValue(true)
