@@ -1,4 +1,4 @@
-package com.example.github.domain.repo
+package com.example.github.domain.db.dao
 
 import androidx.room.*
 import com.example.github.domain.entity.User

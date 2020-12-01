@@ -33,6 +33,7 @@
             android:layout_marginEnd="104dp"
             app:count="@{user2.followers}"
             app:countLabel="@{`Followers`}"
+            app:username="@{user2.login}"
             app:layout_constraintEnd_toStartOf="@+id/followingView"
             app:layout_constraintStart_toEndOf="@+id/repoView"
             app:layout_constraintTop_toTopOf="parent" />

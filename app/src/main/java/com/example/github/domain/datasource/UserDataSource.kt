@@ -2,7 +2,7 @@ package com.example.github.domain.datasource
 
 import com.example.github.data.apiservices.GithubService
 import com.example.github.domain.entity.User
-import com.example.github.domain.repo.UserDao
+import com.example.github.domain.db.dao.UserDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -15,17 +15,5 @@ class UserDataSource(private val userDao: UserDao, private val githubService: Gi
         }
 
         return userDao.getUser(username)
-    }
-
-    suspend fun fetchFollowers(username: String): List<User> {
-        return withContext(Dispatchers.IO) {
-            githubService.fetchFollowers(username)
-        }
-    }
-
-    suspend fun fetchFollowing(username: String): List<User> {
-        return withContext(Dispatchers.IO) {
-            githubService.fetchFollowing(username)
-        }
     }
 }

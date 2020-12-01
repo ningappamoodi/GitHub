@@ -10,4 +10,5 @@
 
     <string name="menu_home">Profiles</string>
     <string name="menu_profile">Profile</string>
+    <string name="menu_followers">Followers</string>
 </resources>

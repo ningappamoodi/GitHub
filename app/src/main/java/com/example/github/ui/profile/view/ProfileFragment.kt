@@ -5,8 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.github.R
+import com.example.github.databinding.CustomTextViewBinding
 import com.example.github.databinding.ProfileFragmentBinding
+import com.example.github.databinding.ProfileSection1Binding
 import com.example.github.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -17,16 +21,26 @@ class ProfileFragment : Fragment() {
 
     private val profileViewModel: HomeViewModel by sharedViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = ProfileFragmentBinding.inflate(inflater, container, false)
+
+        binding.include.followersView.textView2.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("username", arguments?.getString("username"))
+            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle) }
+
+        binding.include.followersView.textView3.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("username", arguments?.getString("username"))
+            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle) }
+
         profileViewModel.userLiveData.observe(viewLifecycleOwner, { binding.user = it })
+
         return binding.root
     }
 
