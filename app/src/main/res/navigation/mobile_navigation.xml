@@ -7,14 +7,24 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.github.ui.profile.view.ProfileSearchFragment"
+        android:name="com.example.github.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/home_fragment" >
         <action
-            android:id="@+id/action_nav_home_to_nav_profile"
-            app:destination="@id/nav_profile" />
+            android:id="@+id/action_nav_home_to_nav_search_profile"
+            app:destination="@id/nav_search_profile" />
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_search_profile"
+        android:name="com.example.github.ui.profile.view.ProfileSearchFragment"
+        android:label="@string/menu_search_profile"
+        tools:layout="@layout/profile_search_fragment" >
+
+        <action
+            android:id="@+id/action_nav_search_profile_to_nav_profile"
+            app:destination="@id/nav_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.github.ui.profile.view.ProfileFragment"
