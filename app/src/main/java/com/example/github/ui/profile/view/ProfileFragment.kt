@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.github.R
-import com.example.github.databinding.CustomTextViewBinding
 import com.example.github.databinding.ProfileFragmentBinding
-import com.example.github.databinding.ProfileSection1Binding
-import com.example.github.ui.home.HomeViewModel
+import com.example.github.ui.home.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ProfileFragment : Fragment() {
@@ -19,7 +16,7 @@ class ProfileFragment : Fragment() {
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val profileViewModel: HomeViewModel by sharedViewModel()
+    private val profileViewModel: UserViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
