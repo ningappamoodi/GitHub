@@ -12,4 +12,5 @@
     <string name="menu_search_profile">Search Profile</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_followers">Followers</string>
+    <string name="menu_followings">Followings</string>
 </resources>

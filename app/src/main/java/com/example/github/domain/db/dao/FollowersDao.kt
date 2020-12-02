@@ -14,12 +14,12 @@ interface FollowersDao {
     suspend fun insertFollowers(followersList: List<Followers>?)
 
     @Query("DELETE FROM Followers where username=:username")
-    suspend  fun cleaFollowers(username: String)
+    suspend  fun clearFollowers(username: String)
 
     @Transaction
     suspend fun deleteAndCreateFollowers(username: String, followersList: List<Followers>) {
 
-        cleaFollowers(username)
+        clearFollowers(username)
         insertFollowers(followersList)
     }
 

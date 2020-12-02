@@ -39,6 +39,18 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
         }
 
+        binding.include.followingView.textView2.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("username", arguments?.getString("username"))
+            findNavController().navigate(R.id.action_nav_profile_to_nav_following, bundle)
+        }
+
+        binding.include.followingView.textView3.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("username", arguments?.getString("username"))
+            findNavController().navigate(R.id.action_nav_profile_to_nav_following, bundle)
+        }
+
         context?.resources?.getColor(android.R.color.darker_gray)?.let {
             binding.include.repoView.textView2.setTextColor(
                 it

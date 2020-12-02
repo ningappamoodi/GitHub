@@ -1,19 +1,20 @@
 package com.example.github.domain.datasource
 
 import com.example.github.data.apiservices.GithubService
-import com.example.github.domain.db.dao.FollowersDao
-import com.example.github.domain.entity.Followers
+import com.example.github.domain.db.dao.FollowingDao
+import com.example.github.domain.entity.Following
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-class FollowingDataSource (private val followersDao: FollowersDao, private val githubService: GithubService) {
+class FollowingDataSource (private val followersDao: FollowingDao, private val githubService: GithubService) {
 
-    suspend fun fetchFollowers(username: String): Flow<List<Followers>> {
+    suspend fun fetchFollowings(username: String): Flow<List<Following>> {
         withContext(Dispatchers.IO) {
-            githubService.fetchFollowers(username).also {
-                followersDao.insertFollowers(it) }
+            githubService.fetchFollowing(username).map<Following, Following>
+            { following: Following -> following.username = username;following }
+                .also { followersDao.deleteAndCreateFollowings(username, it) }
         }
-        return followersDao.getFollowers(username)
+        return followersDao.getFollowing(username)
     }
 }
