@@ -1,4 +1,4 @@
-package com.example.github.ui.home
+package com.example.github.ui.profile.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class UserViewModel(private val userUseCase: UserUseCase) : ViewModel() {
+class ProfileViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
     private val _userLiveData: MutableLiveData<User> = MutableLiveData()
     val userLiveData: LiveData<User>  = _userLiveData

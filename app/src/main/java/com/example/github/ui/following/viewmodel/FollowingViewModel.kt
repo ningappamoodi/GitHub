@@ -1,4 +1,4 @@
-package com.example.github.ui.profile.viewmodel
+package com.example.github.ui.following.viewmodel
 
 import androidx.lifecycle.ViewModel
 

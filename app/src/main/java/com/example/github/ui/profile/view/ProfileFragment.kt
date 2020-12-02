@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.github.R
 import com.example.github.databinding.ProfileFragmentBinding
-import com.example.github.ui.home.UserViewModel
+import com.example.github.ui.profile.viewmodel.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ProfileFragment : Fragment() {
@@ -16,7 +16,7 @@ class ProfileFragment : Fragment() {
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val profileViewModel: UserViewModel by sharedViewModel()
+    private val profileViewModel: ProfileViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
