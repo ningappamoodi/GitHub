@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.github.R
 import com.example.github.databinding.ProfileFragmentBinding
 import com.example.github.ui.profile.viewmodel.ProfileViewModel
@@ -29,14 +30,18 @@ class ProfileFragment : Fragment() {
         binding.include.followersView.textView2.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("username", arguments?.getString("username"))
-            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle) }
+            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
+        }
 
         binding.include.followersView.textView3.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("username", arguments?.getString("username"))
-            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle) }
+            findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
+        }
 
-        profileViewModel.userLiveData.observe(viewLifecycleOwner, { binding.user = it })
+        profileViewModel.userLiveData.observe(viewLifecycleOwner, {
+            binding.user = it
+            Glide.with(this).load(it.avatar_url).into(binding.imgProfile)})
 
         return binding.root
     }

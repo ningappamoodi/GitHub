@@ -19,6 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <ImageView
             android:id="@+id/imgBackground"
             android:layout_width="match_parent"
@@ -43,24 +49,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/noto_sans"
         android:text="@{ `About ` + user.name}"
-        android:textSize="36dp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        tools:text="About" />
 
     <TextView
         android:id="@+id/textBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/noto_sans_italic"
         android:padding="8dp"
         android:text="@{user.bio}"
-        tools:text="This is Github user text area. This will contains bio data of a user. It has information like name, company, organization, skills"
-        android:textSize="14dp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAbout" />
+        app:layout_constraintTop_toBottomOf="@+id/textAbout"
+        tools:text="This is Github user text area. This will contains bio data of a user. It has information like name, company, organization, skills" />
 
     <include
         android:id="@+id/include"
@@ -68,9 +77,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
         app:user2="@{user}" />

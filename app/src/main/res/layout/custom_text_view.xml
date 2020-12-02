@@ -20,18 +20,21 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="0"
+        android:layout_gravity="center"
+        android:fontFamily="@font/noto_sans_bold"
         android:text="@{String.valueOf(count)}"
         android:textSize="32dp"
-        android:layout_gravity="center" />
+        android:textColor="@color/maroon"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Label"
+        android:layout_gravity="center"
+        android:fontFamily="@font/noto_sans"
         android:text="@{countLabel}"
-        android:textSize="24dp"
-        android:layout_gravity="center"/>
+        android:textSize="16dp"
+        tools:text="Label" />
 </LinearLayout>
 </layout>

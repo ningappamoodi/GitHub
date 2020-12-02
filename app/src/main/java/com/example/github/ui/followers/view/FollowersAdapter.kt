@@ -3,6 +3,7 @@ package com.example.github.ui.followers.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.github.databinding.FollowersItemBinding
 import com.example.github.domain.entity.Followers
 import com.example.github.domain.entity.User
@@ -16,6 +17,8 @@ class FollowersAdapter(private val followersList: List<Followers>):
         fun bind(followers: Followers) {
             binding.followers = followers
             binding.executePendingBindings()
+            Glide.with(binding.imageView2.context).load(followers.avatar_url).into(binding.imageView2)
+
         }
     }
 
