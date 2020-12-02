@@ -19,12 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
         <ImageView
             android:id="@+id/imgBackground"
             android:layout_width="match_parent"
@@ -41,6 +35,10 @@
             app:layout_constraintStart_toEndOf="@+id/imgBackground"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/img_avatar" />
+
+        <include android:id="@+id/userDetails" layout="@layout/profile_user_details"
+            app:user3="@{user}"/>
+
     </FrameLayout>
 
     <TextView
@@ -60,7 +58,7 @@
         android:id="@+id/textBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/noto_sans_italic"
         android:padding="8dp"
         android:text="@{user.bio}"

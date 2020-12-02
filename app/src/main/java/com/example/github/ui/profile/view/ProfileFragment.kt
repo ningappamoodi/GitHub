@@ -39,6 +39,11 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
         }
 
+        context?.resources?.getColor(android.R.color.darker_gray)?.let {
+            binding.include.repoView.textView2.setTextColor(
+                it
+            )
+        }
         profileViewModel.userLiveData.observe(viewLifecycleOwner, {
             binding.user = it
             Glide.with(this).load(it.avatar_url).into(binding.imgProfile)})
