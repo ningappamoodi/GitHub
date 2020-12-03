@@ -10,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.R
 import com.example.github.domain.entity.User
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,6 +39,10 @@ class HomeFragment : Fragment() {
 
         usersViewModel.usersLiveData.observe(viewLifecycleOwner, {
             it?.let {
+              if(it.isNotEmpty())  {
+                  view.text_home.visibility = View.GONE
+              }
+
                 userList.clear()
                 userList.addAll(it)
                 usersAdapter.notifyDataSetChanged()
@@ -44,12 +50,18 @@ class HomeFragment : Fragment() {
         })
 
         usersViewModel.errorLiveData.observe(viewLifecycleOwner,
-            { if(it) Toast.makeText(context, "Error while loading!",
-                Toast.LENGTH_LONG).show()})
+            { if(it) {
+                view.text_home.visibility = View.VISIBLE
+                view.userList.visibility = View.GONE
+                Toast.makeText(context, "Error while loading!",
+                    Toast.LENGTH_LONG).show()
+            }})
 
         view.userList.layoutManager = LinearLayoutManager(context)
         view.userList.adapter = usersAdapter
     }
+
+
     override fun onResume() {
         super.onResume()
         homeViewModel.hideFab(false)
