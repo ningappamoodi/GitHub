@@ -14,17 +14,21 @@ import java.lang.Exception
 
 class ProfileViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
-    private val _userLiveData: MutableLiveData<User> = MutableLiveData()
+    private var _userLiveData: MutableLiveData<User> = MutableLiveData()
+        set(value) {}
+
     val userLiveData: LiveData<User>  = _userLiveData
 
     private val _userFetchLiveData: MutableLiveData<String> = MutableLiveData()
     val userFetchLiveData: LiveData<String>  = _userFetchLiveData
 
-    private val _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+        set(value) {}
+
     val errorLiveData: LiveData<Boolean>  = _errorLiveData
 
     fun fetch(username: String) {
-        _errorLiveData.value = false
+        _errorLiveData.postValue(false)
 
         viewModelScope.launch {
            try {
