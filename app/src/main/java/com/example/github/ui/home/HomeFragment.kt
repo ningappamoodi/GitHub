@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.R
 import com.example.github.domain.entity.User
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +34,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         usersViewModel.fetch()
-        usersAdapter = UsersAdapter(userList)
+        usersAdapter = UsersAdapter(userList, ::navigateToProfile)
 
         usersViewModel.usersLiveData.observe(viewLifecycleOwner, {
             it?.let {
@@ -60,6 +59,10 @@ class HomeFragment : Fragment() {
         view.userList.layoutManager = LinearLayoutManager(context)
         view.userList.adapter = usersAdapter
     }
+
+    private fun navigateToProfile(userName : String)  =
+        findNavController().navigate(R.id.action_nav_home_to_nav_profile,
+            Bundle().apply {  putString("username", userName) })
 
 
     override fun onResume() {
