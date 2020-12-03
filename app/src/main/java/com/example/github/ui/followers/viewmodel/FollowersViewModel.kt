@@ -11,14 +11,18 @@ import kotlinx.coroutines.launch
 
 class FollowersViewModel(private val followersUseCase: FollowersUseCase): ViewModel() {
 
-    private val _followersLiveData: MutableLiveData<List<Followers>> = MutableLiveData()
+    private var _followersLiveData: MutableLiveData<List<Followers>> = MutableLiveData()
+        set(value) {}
+
     val followersLiveData: LiveData<List<Followers>> = _followersLiveData
 
-    private val _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+        set(value) {}
+
     val errorLiveData: LiveData<Boolean> = _errorLiveData
 
     fun fetch(username: String) {
-        _errorLiveData.value = false
+        _errorLiveData.postValue(false)
 
         viewModelScope.launch {
             try {

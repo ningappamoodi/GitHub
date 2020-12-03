@@ -13,14 +13,18 @@ import java.lang.Exception
 
 class UsersViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
-    private val _usersLiveData: MutableLiveData<List<User>> = MutableLiveData()
+    private var _usersLiveData: MutableLiveData<List<User>> = MutableLiveData()
+        set(value) {}
+
     val usersLiveData: LiveData<List<User>> = _usersLiveData
 
-    private val _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var _errorLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+        set(value) {}
+
     val errorLiveData: LiveData<Boolean> = _errorLiveData
 
     fun fetch() {
-        _errorLiveData.value = false
+        _errorLiveData.postValue(false)
 
         viewModelScope.launch {
             try {
