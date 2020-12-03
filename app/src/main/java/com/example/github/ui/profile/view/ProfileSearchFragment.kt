@@ -27,7 +27,7 @@ class ProfileSearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.profile_search_fragment, container, false)
 
         profileViewModel.userFetchLiveData.observe(viewLifecycleOwner) {
-            val username = view.usernameText.text.toString()
+            val username = view.usernameText.text.toString().toLowerCase()
             it?.let {
                 findNavController().navigate(R.id.action_nav_search_profile_to_nav_profile,
                     Bundle().apply { putString("username", username) })
@@ -46,7 +46,7 @@ class ProfileSearchFragment : Fragment() {
             val username = view.usernameText.text.toString()
 
             if(username.isNotEmpty())  {
-                profileViewModel.fetch(username.trim())
+                profileViewModel.fetch(username.trim().toLowerCase())
                 val imm = requireActivity()
                     .getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0);
