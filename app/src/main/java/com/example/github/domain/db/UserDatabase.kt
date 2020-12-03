@@ -9,7 +9,7 @@ import com.example.github.domain.entity.Followers
 import com.example.github.domain.entity.Following
 import com.example.github.domain.entity.User
 
-@Database(entities = [User::class, Followers::class, Following::class], version = 4)
+@Database(entities = [User::class, Followers::class, Following::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
     abstract fun followersDao() : FollowersDao

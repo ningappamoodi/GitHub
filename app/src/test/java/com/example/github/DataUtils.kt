@@ -1,6 +1,7 @@
 package com.example.github
 
 import com.example.github.domain.entity.Followers
+import com.example.github.domain.entity.Following
 import com.example.github.domain.entity.User
 
 object DataUtils {
@@ -16,4 +17,9 @@ object DataUtils {
 
     fun getFollower(): Followers = Followers(1, "octocat",
         "", "Octo Cat", "https://avatars/1")
+
+    fun getFollowing(): Following = Following(1, "octocat",
+        "", "Octo Cat", "https://avatars/1")
+
+    fun getFollowings(): List<Following> = listOf(getFollowing())
 }
