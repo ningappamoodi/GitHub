@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.R
 import com.example.github.domain.entity.Following
 import com.example.github.ui.following.viewmodel.FollowingViewModel
-import kotlinx.android.synthetic.main.followers_fragment.view.*
 import kotlinx.android.synthetic.main.following_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -58,7 +58,7 @@ class ProfileFragment : Fragment() {
         }
         profileViewModel.userLiveData.observe(viewLifecycleOwner, {
             binding.user = it
-            Glide.with(this).load(it.avatar_url).into(binding.imgProfile)})
+            Glide.with(this).load(it.avatar_url).circleCrop().into(binding.imgProfile)})
 
         return binding.root
     }

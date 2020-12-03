@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 class UserUseCase(private val userRepo: UserRepo) {
 
     suspend fun fetchUser(username : String): Flow<User> = userRepo.fetchUser(username)
+
+    fun fetchUsers(): Flow<List<User>> = userRepo.fetchUsers()
 }

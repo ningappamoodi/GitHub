@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface UserDao {
 
+    @Query("SELECT * FROM User where login=:username LIMIT 1")
+    fun getUser(username: String): Flow<User>
+
     @Query("SELECT * FROM User")
     fun getUsers(): Flow<List<User>>
 
@@ -25,10 +28,4 @@ interface UserDao {
             insertUser(it)
         }
     }
-
-    @Query("SELECT * FROM User where id=:id LIMIT 1")
-    fun getUser(id: Int): Flow<User>
-
-    @Query("SELECT * FROM User where login=:username LIMIT 1")
-    fun getUser(username: String): Flow<User>
 }

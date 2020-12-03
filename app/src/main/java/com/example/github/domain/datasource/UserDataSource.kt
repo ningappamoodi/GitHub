@@ -11,14 +11,16 @@ class UserDataSource(private val userDao: UserDao, private val githubService: Gi
 
     suspend fun fetchUser(username: String): Flow<User> {
 
-           withContext(Dispatchers.IO) {
-               try {
-                   githubService.fetchUser(username).also { userDao.insertUser(it) }
-               }catch (t: Throwable) {
-                   t.printStackTrace()
-               }
+        withContext(Dispatchers.IO) {
+            try {
+                githubService.fetchUser(username).also { userDao.insertUser(it) }
+            } catch (t: Throwable) {
+                t.printStackTrace()
+            }
         }
 
         return userDao.getUser(username)
     }
+
+     fun fetchUsers(): Flow<List<User>> = userDao.getUsers()
 }

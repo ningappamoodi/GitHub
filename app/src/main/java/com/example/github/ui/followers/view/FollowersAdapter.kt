@@ -17,7 +17,8 @@ class FollowersAdapter(private val followersList: List<Followers>):
         fun bind(followers: Followers) {
             binding.followers = followers
             binding.executePendingBindings()
-            Glide.with(binding.imageView2.context).load(followers.avatar_url).into(binding.imageView2)
+            Glide.with(binding.imageView2.context).load(followers.avatar_url)
+                .circleCrop().into(binding.imageView2)
 
         }
     }
