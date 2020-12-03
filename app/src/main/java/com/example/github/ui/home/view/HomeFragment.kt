@@ -1,4 +1,4 @@
-package com.example.github.ui.home
+package com.example.github.ui.home.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.R
 import com.example.github.domain.entity.User
+import com.example.github.ui.home.viewmodel.HomeViewModel
+import com.example.github.ui.home.viewmodel.UsersViewModel
 import kotlinx.android.synthetic.main.home_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
