@@ -16,22 +16,22 @@ class FollowersRepoTest {
     @MockK
     private lateinit var followerDataSource: FollowerDataSource
 
-    private lateinit var articlesRepo: FollowersRepo
+    private lateinit var followersRepo: FollowersRepo
 
     @Before
     fun setUP() {
         MockKAnnotations.init(this)
-        articlesRepo = FollowersRepo(followerDataSource)
+        followersRepo = FollowersRepo(followerDataSource)
     }
 
     @Test
     fun `fetch Followers`() {
-        val articleList = DataUtils.getFollowers()
+        val followers = DataUtils.getFollowers()
 
         runBlocking {
-            coEvery { followerDataSource.fetchFollowers("username") } returns flow { articleList }
+            coEvery { followerDataSource.fetchFollowers("username") } returns flow { followers }
 
-            articlesRepo.fetchFollowers("username").collect { assertEquals(articleList, it) }
+            followersRepo.fetchFollowers("username").collect { assertEquals(followers, it) }
         }
     }
 }

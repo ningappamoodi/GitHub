@@ -8,6 +8,7 @@ import com.example.github.domain.usecases.FollowersUseCaseTest
 import com.example.github.domain.usecases.UserUseCaseTest
 import com.example.github.ui.followers.viewmodel.FollowersViewModelTest
 import com.example.github.ui.following.viewmodel.FollowingViewModelTest
+import com.example.github.ui.home.viewmodel.HomeViewModelTest
 import com.example.github.ui.home.viewmodel.UsersViewModelTest
 import com.example.github.ui.profile.viewmodel.ProfileViewModelTest
 import org.junit.runner.RunWith
@@ -18,5 +19,6 @@ import org.junit.runners.Suite
                     UserRepoTest::class, FollowersRepoTest::class,
                     UserUseCaseTest::class, FollowersUseCaseTest::class,
                     UsersViewModelTest::class, ProfileViewModelTest::class,
+                    HomeViewModelTest::class,
                     FollowersViewModelTest::class, FollowingViewModelTest::class)
 class TestSuite
