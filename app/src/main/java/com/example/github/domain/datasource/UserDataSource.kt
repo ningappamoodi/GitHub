@@ -1,8 +1,8 @@
 package com.example.github.domain.datasource
 
 import com.example.github.data.apiservices.GithubService
-import com.example.github.domain.entity.User
 import com.example.github.domain.db.dao.UserDao
+import com.example.github.domain.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -13,7 +13,9 @@ class UserDataSource(private val userDao: UserDao, private val githubService: Gi
 
         withContext(Dispatchers.IO) {
             try {
-                githubService.fetchUser(username).also { userDao.insertUser(it) }
+                githubService.fetchUser(username).also {
+                    it.login = it.login.toLowerCase()
+                    userDao.insertUser(it) }
             } catch (t: Throwable) {
                 t.printStackTrace()
             }

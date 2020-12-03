@@ -4,5 +4,5 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Following(@PrimaryKey val id: Int, val login: String, var username: String,
+data class Following(@PrimaryKey val id: Int, var login: String, var username: String,
                      val name: String?,  val avatar_url:String?)
