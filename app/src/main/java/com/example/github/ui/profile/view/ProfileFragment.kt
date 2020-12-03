@@ -25,12 +25,17 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         _binding = ProfileFragmentBinding.inflate(inflater, container, false)
 
+        binding.progressBar.visibility = View.VISIBLE
+        binding.profileLayout.visibility = View.GONE
         profileViewModel.userLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 binding.user = it
                 bindData()
+                binding.progressBar.visibility = View.GONE
+                binding.profileLayout.visibility = View.VISIBLE
         }})
 
         return binding.root

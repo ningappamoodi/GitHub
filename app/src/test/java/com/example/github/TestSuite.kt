@@ -3,7 +3,6 @@ package com.example.github
 import com.example.github.domain.datasource.FollowerDataSourceTest
 import com.example.github.domain.datasource.UserDataSourceTest
 import com.example.github.domain.db.repo.FollowersRepoTest
-import com.example.github.domain.db.repo.UserRepo
 import com.example.github.domain.db.repo.UserRepoTest
 import com.example.github.domain.usecases.FollowersUseCaseTest
 import com.example.github.domain.usecases.UserUseCaseTest

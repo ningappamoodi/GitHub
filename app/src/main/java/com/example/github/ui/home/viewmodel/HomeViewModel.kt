@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel: ViewModel() {
 
-    private val _hideFabLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var _hideFabLiveData: MutableLiveData<Boolean> = MutableLiveData(false)
+    set(value) {}
+
     val hideFabLiveData: LiveData<Boolean> = _hideFabLiveData
 
-    fun hideFab(hide: Boolean) {
-        _hideFabLiveData.value = hide
-    }
+    fun hideFab(hide: Boolean) = _hideFabLiveData.postValue(hide)
 }
