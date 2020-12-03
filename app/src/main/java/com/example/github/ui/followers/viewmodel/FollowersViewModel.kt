@@ -37,9 +37,8 @@ class FollowersViewModel(private val followersUseCase: FollowersUseCase): ViewMo
     }
 
     private fun consumeUser(followers: List<Followers>) {
-        when (followers) {
-            null -> _errorLiveData.postValue(true)
-            else -> _followersLiveData.postValue(followers)
-        }
+
+            if(followers.isEmpty()) _errorLiveData.postValue(true)
+            else  _followersLiveData.postValue(followers)
     }
 }

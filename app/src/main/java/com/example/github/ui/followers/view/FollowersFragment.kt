@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.R
@@ -22,6 +21,8 @@ class FollowersFragment : Fragment() {
     private val followersList = mutableListOf<Followers>()
     lateinit var followersAdapter: FollowersAdapter
 
+    var snackbar: Snackbar? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,12 +33,12 @@ class FollowersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.progressBar.visibility = View.VISIBLE
-        arguments?.getString("username")?.let { followersViewModel.fetch(it) }
+        fetch()
         followersAdapter = FollowersAdapter(followersList)
 
         followersViewModel?.followersLiveData?.observe(viewLifecycleOwner, {
             it?.let {
+                snackbar?.dismiss()
                 view.progressBar.visibility = View.GONE
                 followersList.clear()
                 followersList.addAll(it)
@@ -46,19 +47,28 @@ class FollowersFragment : Fragment() {
         })
 
         followersViewModel?.errorLiveData.observe(viewLifecycleOwner,
-            { if(it) Toast.makeText(context, "Error while loading!",
-            Toast.LENGTH_LONG).show()})
+            { if(it) retryLoadData(view)})
 
         view.folowersList.layoutManager = LinearLayoutManager(context)
         view.folowersList.adapter = followersAdapter
     }
 
-     private fun retryLoadData() {
-       progressBar.visibility = View.GONE
-       Snackbar.make(folowersList, getString(R.string.no_data), Snackbar.LENGTH_INDEFINITE)
-           .setAction(getString(R.string.retry)) {
-               arguments?.getString("username")?.let { followersViewModel.fetch(it) }
-           }
-           .show()
-   }
+    private fun fetch() {
+        progressBar.visibility = View.VISIBLE
+        arguments?.getString("username")?.let { followersViewModel.fetch(it) }
+    }
+
+    private fun retryLoadData(view: View) {
+        progressBar.visibility = View.GONE
+         snackbar = Snackbar.make(view, getString(R.string.no_data), Snackbar.LENGTH_INDEFINITE)
+            .setAction(getString(R.string.retry)) {
+                arguments?.getString("username")?.let { fetch() }
+            }
+        snackbar?.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        snackbar?.dismiss()
+    }
 }

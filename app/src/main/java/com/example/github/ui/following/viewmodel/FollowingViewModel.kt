@@ -37,9 +37,8 @@ class FollowingViewModel(private val followingUseCase: FollowingUseCase): ViewMo
     }
 
     private fun consumeUser(followings: List<Following>) {
-        when (followings) {
-            null -> _errorLiveData.postValue(true)
-            else -> _followingLiveData.postValue(followings)
-        }
+
+            if(followings.isEmpty())_errorLiveData.postValue(true)
+            else _followingLiveData.postValue(followings)
     }
 }

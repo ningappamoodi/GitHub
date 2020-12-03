@@ -11,11 +11,17 @@ class FollowingDataSource (private val followersDao: FollowingDao, private val g
 
     suspend fun fetchFollowings(username: String): Flow<List<Following>> {
         withContext(Dispatchers.IO) {
-            githubService.fetchFollowing(username).map<Following, Following>
-            { following: Following -> following.username = username
-                following.login = following.login.toLowerCase()
-                following }
-                .also { followersDao.deleteAndCreateFollowings(username, it) }
+            try {
+                githubService.fetchFollowing(username).map<Following, Following>
+                { following: Following ->
+                    following.username = username
+                    following.login = following.login.toLowerCase()
+                    following
+                }
+                    .also { followersDao.deleteAndCreateFollowings(username, it) }
+            }catch (t: Throwable) {
+                t.printStackTrace()
+            }
         }
         return followersDao.getFollowing(username)
     }

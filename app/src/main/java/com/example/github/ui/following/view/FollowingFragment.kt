@@ -10,7 +10,9 @@ import com.example.github.R
 import com.example.github.domain.entity.Following
 import com.example.github.ui.following.viewmodel.FollowingViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.followers_fragment.*
 import kotlinx.android.synthetic.main.following_fragment.*
+import kotlinx.android.synthetic.main.following_fragment.progressBar
 import kotlinx.android.synthetic.main.following_fragment.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,6 +21,8 @@ class FollowingFragment: Fragment() {
 
     private val followingList = mutableListOf<Following>()
     lateinit var followingAdapter: FollowingAdapter
+
+    var snackbar: Snackbar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,7 @@ class FollowingFragment: Fragment() {
 
         followingViewModel?.followingLiveData?.observe(viewLifecycleOwner, {
             it?.let {
+                snackbar?.dismiss()
                 followingList.clear()
                 followingList.addAll(it)
                 followingAdapter.notifyDataSetChanged()
@@ -55,10 +60,15 @@ class FollowingFragment: Fragment() {
 
     private fun retryLoadData(view: View) {
         progressBar.visibility = View.GONE
-        Snackbar.make(view, getString(R.string.no_data), Snackbar.LENGTH_INDEFINITE)
+        snackbar = Snackbar.make(view, getString(R.string.no_data), Snackbar.LENGTH_INDEFINITE)
             .setAction(getString(R.string.retry)) {
                 arguments?.getString("username")?.let { fetch() }
             }
-            .show()
+        snackbar?.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        snackbar?.dismiss()
     }
 }
