@@ -58,4 +58,9 @@ class ProfileSearchFragment : Fragment() {
         }
         return view
     }
+
+    override fun onStop() {
+        super.onStop()
+
+    }
 }

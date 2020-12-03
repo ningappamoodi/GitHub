@@ -5,6 +5,8 @@ import com.example.github.domain.entity.User
 
 object DataUtils {
 
+    fun getUsers(): List<User> =  listOf(getUser())
+
     fun getUser() : User = User(1, "octocat", "Octo Cat", "@Github",
         "name@github.com", "Bengaluru", "Full Stack developer",
         "@github", 8, 10, 15,

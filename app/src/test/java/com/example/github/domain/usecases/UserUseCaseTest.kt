@@ -42,4 +42,17 @@ class UserUseCaseTest  {
             userUseCase.fetchUser("").collect { assertEquals(user, it) }
         }
     }
+
+    @Test
+    fun `fetch Users`() {
+
+        val user = DataUtils.getUsers()
+
+        runBlocking {
+            val flow = flow { emit(user) }
+            coEvery { userRepo.fetchUsers() } returns flow
+
+            userUseCase.fetchUsers().collect { assertEquals(user, it) }
+        }
+    }
 }

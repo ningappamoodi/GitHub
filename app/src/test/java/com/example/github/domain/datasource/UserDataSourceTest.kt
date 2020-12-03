@@ -49,4 +49,17 @@ class UserDataSourceTest {
             userDataSource.fetchUser("username").collect { assertEquals(user, it) }
         }
     }
+
+    @Test
+    fun `fetch Users`() {
+
+        val user = DataUtils.getUsers()
+
+        runBlocking {
+
+            coEvery { userDao.getUsers() } returns flow { user}
+
+            userDataSource.fetchUsers().collect { assertEquals(user, it) }
+        }
+    }
 }

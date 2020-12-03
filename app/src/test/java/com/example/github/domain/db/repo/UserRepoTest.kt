@@ -26,13 +26,24 @@ class UserRepoTest {
     }
 
     @Test
-    fun `fetch Article`() {
+    fun `fetch User`() {
         val user = DataUtils.getUser()
 
         runBlocking {
             coEvery { userDataSource.fetchUser("username") } returns flow { user }
 
             userRepo.fetchUser("username").collect { assertEquals(user, it) }
+        }
+    }
+
+    @Test
+    fun `fetch Users`() {
+        val user = DataUtils.getUsers()
+
+        runBlocking {
+            coEvery { userDataSource.fetchUsers() } returns flow { user }
+
+            userRepo.fetchUsers().collect { assertEquals(user, it) }
         }
     }
 }
