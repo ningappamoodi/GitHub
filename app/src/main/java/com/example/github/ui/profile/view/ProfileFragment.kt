@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.github.R
 import com.example.github.databinding.ProfileFragmentBinding
 import com.example.github.ui.profile.viewmodel.ProfileViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val profileViewModel: ProfileViewModel by sharedViewModel()
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,25 +30,25 @@ class ProfileFragment : Fragment() {
 
         binding.include.followersView.textView2.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("username", arguments?.getString("username"))
+            bundle.putString("username", binding.user?.login)
             findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
         }
 
         binding.include.followersView.textView3.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("username", arguments?.getString("username"))
+            bundle.putString("username", binding.user?.login)
             findNavController().navigate(R.id.action_nav_profile_to_nav_followers, bundle)
         }
 
         binding.include.followingView.textView2.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("username", arguments?.getString("username"))
+            bundle.putString("username", binding.user?.login)
             findNavController().navigate(R.id.action_nav_profile_to_nav_following, bundle)
         }
 
         binding.include.followingView.textView3.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("username", arguments?.getString("username"))
+            bundle.putString("username", binding.user?.login)
             findNavController().navigate(R.id.action_nav_profile_to_nav_following, bundle)
         }
 
@@ -57,8 +58,10 @@ class ProfileFragment : Fragment() {
             )
         }
         profileViewModel.userLiveData.observe(viewLifecycleOwner, {
+            it?.let {
             binding.user = it
-            Glide.with(this).load(it.avatar_url).circleCrop().into(binding.imgProfile)})
+            Glide.with(this).load(it.avatar_url).circleCrop().into(binding.imgProfile)
+        }})
 
         return binding.root
     }

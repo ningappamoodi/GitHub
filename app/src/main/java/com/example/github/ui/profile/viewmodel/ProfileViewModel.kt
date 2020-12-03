@@ -55,5 +55,6 @@ class ProfileViewModel(private val userUseCase: UserUseCase) : ViewModel() {
 
     fun reset() {
         _userFetchLiveData.value = null
+        _userLiveData.value = null
     }
 }

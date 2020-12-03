@@ -12,12 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.github.R
 import com.example.github.ui.profile.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.profile_search_fragment.view.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ProfileSearchFragment : Fragment() {
 
-    private val profileViewModel: ProfileViewModel by sharedViewModel()
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
